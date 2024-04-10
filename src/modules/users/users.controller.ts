@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 type CreateUserType = {
   name: string;
@@ -8,8 +9,10 @@ type CreateUserType = {
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @Post()
   async create(@Body() data: CreateUserType) {
-    return { user: data };
+    return this.usersService.create(data);
   }
 }
