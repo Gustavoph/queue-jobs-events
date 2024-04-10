@@ -1,9 +1,12 @@
-export class CreateUserEvent {
-  message: string;
-  data: any;
+import { User } from '../entities/user.entity';
+import { DomainEvent } from 'src/shared/core/domain.event';
 
-  constructor(data: any) {
-    this.message = 'create user event';
-    this.data = data;
+export class CreateUserEvent extends DomainEvent<User> {
+  payload: User;
+
+  constructor(payload: User) {
+    super();
+
+    this.payload = payload;
   }
 }
